@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10151b">
+  <meta name="description" content="Mechanical engineering portfolio showcasing design projects, CAD, analysis, and hands-on engineering.">
+  <title>Your Name | Mechanical Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #10151b; --panel: #171e26; --panel2: #1c2630; --text: #eef3f7;
+      --muted: #9baab8; --line: #2a3743; --accent: #b8f36b; --accent-dark: #24351c;
+      --mono: "DM Mono", monospace; --sans: "Manrope", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.65; }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+    .mono, .eyebrow, .nav-label, .tag, .project-index, .status { font-family: var(--mono); }
+    .topline { height: 4px; background: linear-gradient(90deg, var(--accent) 0 20%, #35434d 20% 100%); }
+    header { position: sticky; top: 0; z-index: 10; background: rgb(16 21 27 / 90%); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-weight: 800; letter-spacing: -.04em; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 26px; color: var(--muted); font-size: .88rem; }
+    .nav-links a:hover { color: var(--accent); }
+    .menu-btn { display: none; border: 1px solid var(--line); background: var(--panel); color: var(--text); padding: 8px 12px; border-radius: 8px; }
+    .hero { padding: 94px 0 78px; position: relative; overflow: hidden; }
+    .hero:after { content: ""; position: absolute; width: 440px; height: 440px; border: 1px solid #2d3a45; border-radius: 50%; right: -130px; top: 35px; box-shadow: 0 0 0 42px #10151b, 0 0 0 43px #26333d, 0 0 0 90px #10151b, 0 0 0 91px #202c36; pointer-events: none; opacity: .65; }
+    .hero-inner { position: relative; z-index: 1; max-width: 790px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .14em; color: var(--accent); font-size: .76rem; }
+    h1 { font-size: clamp(2.8rem, 7vw, 5.6rem); line-height: 1.02; letter-spacing: -.075em; margin: 22px 0; font-weight: 800; }
+    h1 .outline { color: transparent; -webkit-text-stroke: 1px #a7b4bf; }
+    .intro { max-width: 630px; font-size: clamp(1rem, 2vw, 1.18rem); color: var(--muted); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--line); padding: 12px 17px; border-radius: 8px; font-weight: 700; font-size: .9rem; transition: transform .2s, border-color .2s; }
+    .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .btn.primary { background: var(--accent); color: #10170b; border-color: var(--accent); }
+    .quickfacts { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 48px; color: var(--muted); font: .78rem var(--mono); }
+    .quickfacts span:before { content: "↳ "; color: var(--accent); }
+    section { padding: 76px 0; border-top: 1px solid var(--line); }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
+    .section-head h2 { margin: 8px 0 0; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.12; letter-spacing: -.06em; }
+    .section-head p { max-width: 420px; color: var(--muted); margin: 0; font-size: .94rem; }
+    .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .project { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .2s, border-color .2s; }
+    .project:hover { transform: translateY(-4px); border-color: #60704e; }
+    .project-art { min-height: 225px; display: grid; place-items: center; position: relative; overflow: hidden; background-color: #202a33; background-image: linear-gradient(#ffffff08 1px, transparent 1px), linear-gradient(90deg, #ffffff08 1px, transparent 1px); background-size: 24px 24px; }
+    .project-art svg { width: min(76%, 330px); max-height: 210px; color: var(--accent); filter: drop-shadow(0 10px 22px #0005); }
+    .project-art .art-note { position: absolute; top: 14px; left: 16px; color: #a9b8c4; font: .68rem var(--mono); letter-spacing: .08em; }
+    .project-art .art-number { position: absolute; right: 16px; bottom: 10px; font: 2.5rem var(--mono); color: #ffffff18; }
+    .project-content { padding: 22px; }
+    .project-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--muted); font: .72rem var(--mono); }
+    .project h3 { font-size: 1.24rem; letter-spacing: -.035em; margin: 12px 0 8px; }
+    .project p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 17px; }
+    .tag { border: 1px solid #34434e; border-radius: 5px; color: #c1ced8; padding: 4px 8px; font-size: .68rem; }
+    .placeholder-note { margin-top: 20px; color: #d7e5c5; background: #1b2819; border: 1px solid #394b30; padding: 13px 16px; border-radius: 8px; font-size: .82rem; }
+    .about-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: start; }
+    .about-copy { color: var(--muted); max-width: 640px; }
+    .about-copy p:first-child { margin-top: 0; }
+    .callout { border-left: 2px solid var(--accent); padding: 4px 0 4px 18px; color: var(--text); font-size: 1.08rem; }
+    .skill-panel { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .skill-group { padding: 19px 20px; border-bottom: 1px solid var(--line); }
+    .skill-group:last-child { border-bottom: 0; }
+    .skill-group h3 { margin: 0 0 11px; font: .75rem var(--mono); text-transform: uppercase; color: var(--accent); letter-spacing: .1em; }
+    .skill-group p { margin: 0; font-size: .88rem; color: var(--muted); }
+    .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .process { padding: 22px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+    .process .num { font: .8rem var(--mono); color: var(--accent); }
+    .process h3 { margin: 16px 0 7px; font-size: 1.04rem; }
+    .process p { margin: 0; color: var(--muted); font-size: .86rem; }
+    .contact-panel { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: clamp(24px, 5vw, 48px); border-radius: 16px; border: 1px solid #3b4d36; background: radial-gradient(ellipse at 100% 0%, #293a25, transparent 55%), var(--panel); }
+    .contact-panel h2 { margin: 9px 0; font-size: clamp(1.9rem, 4vw, 3rem); letter-spacing: -.06em; line-height: 1.1; }
+    .contact-panel p { color: var(--muted); margin-bottom: 0; max-width: 530px; }
+    footer { padding: 26px 0; border-top: 1px solid var(--line); color: var(--muted); font: .74rem var(--mono); }
+    .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    @media (max-width: 760px) {
+      .nav { min-height: 64px; flex-wrap: wrap; padding: 12px 0; }
+      .menu-btn { display: inline-block; }
+      .nav-links { display: none; flex-basis: 100%; flex-direction: column; align-items: start; gap: 0; padding: 8px 0; }
+      .nav-links.open { display: flex; }
+      .nav-links a { width: 100%; padding: 10px 0; }
+      .hero { padding: 68px 0 58px; }
+      .hero:after { right: -300px; opacity: .35; }
+      .section-head { align-items: start; flex-direction: column; }
+      .projects, .about-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .contact-panel { align-items: start; flex-direction: column; }
+      .quickfacts { gap: 12px 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="topline"></div>
+  <header>
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#home">YOUR NAME<span>.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu ☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#projects">Projects</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#approach">Approach</a><a href="#contact">Contact ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home" style="border-top:0">
+      <div class="wrap hero-inner">
+        <div class="eyebrow">Mechanical Engineering · Portfolio / 2026</div>
+        <h1>Designing ideas.<br><span class="outline">Engineering</span> solutions.</h1>
+        <p class="intro">I'm <strong>[Your Name]</strong>, a mechanical engineering student interested in turning complex problems into practical, well-designed solutions — from early concepts and CAD to analysis and testing.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">Explore my work <span aria-hidden="true">↓</span></a>
+          <a class="btn" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
+          <!-- Add your resume.pdf to this folder, then uncomment the next line -->
+          <!-- <a class="btn" href="resume.pdf" target="_blank" rel="noopener">View résumé ↗</a> -->
+        </div>
+        <div class="quickfacts">
+          <span>CAD & product design</span><span>Analysis & simulation</span><span>Build / test / iterate</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">01 / Selected work</div><h2>Projects that make<br>ideas tangible.</h2></div>
+          <p>A few examples of how I approach engineering challenges. Replace these starter examples with your own real work before sharing the portfolio.</p>
+        </div>
+        <div class="projects">
+          <article class="project">
+            <div class="project-art">
+              <span class="art-note">CONCEPT / CAD ASSEMBLY</span>
+              <svg viewBox="0 0 320 210" fill="none" aria-label="Illustration of a mechanical gear assembly">
+                <g stroke="currentColor" stroke-width="2">
+                  <circle cx="126" cy="105" r="58"/><circle cx="126" cy="105" r="42"/><circle cx="126" cy="105" r="13"/>
+                  <circle cx="212" cy="137" r="36"/><circle cx="212" cy="137" r="22"/><circle cx="212" cy="137" r="8"/>
+                  <path d="M126 35v14 M126 161v7 M56 105h14 M182 105h7 M77 56l10 10 M165 154l-9 9 M77 154l10-10 M165 56l-9 9"/>
+                  <path d="M212 91v10 M212 173v5 M166 137h10 M248 137h6 M181 106l7 7 M236 161l-6 6 M181 168l7-7 M236 113l-6 6"/>
+                  <path d="M45 190h220 M45 185v10 M265 185v10" stroke-dasharray="4 5" opacity=".55"/>
+                </g>
+              </svg><span class="art-number">01</span>
+            </div>
+            <div class="project-content">
+              <div class="project-meta"><span>MECHANICAL DESIGN</span><span>01 — 03</span></div>
+              <h3>[Project One: Gearbox / Mechanism]</h3>
+              <p>Describe the engineering problem, your design choices, and how you evaluated whether the mechanism met its requirements.</p>
+              <div class="tags"><span class="tag">SolidWorks / CAD</span><span class="tag">Assemblies</span><span class="tag">Drawings</span></div>
+            </div>
+          </article>
+          <article class="project">
+            <div class="project-art">
+              <span class="art-note">ANALYSIS / FEA</span>
+              <svg viewBox="0 0 320 210" fill="none" aria-label="Illustration of a structural analysis mesh">
+                <g stroke-width="1.4">
+                  <path d="M42 151L105 54L255 73L278 151L127 173Z" stroke="#b8f36b" stroke-width="2"/>
+                  <path d="M42 151L127 173L105 54M105 54L166 112L255 73M166 112L127 173M166 112L278 151M255 73L278 151M42 151L166 112L127 173M105 54L214 48L255 73M214 48L166 112" stroke="#9baab8" opacity=".85"/>
+                  <path d="M42 151L127 173L278 151" stroke="#b8f36b" stroke-width="3"/>
+                  <path d="M60 137l-11-10 M84 108l-11-10 M108 80l-11-10 M147 160l-2 13 M181 155l-2 13 M215 150l-2 13 M249 145l-2 13" stroke="#b8f36b"/>
+                </g>
+              </svg><span class="art-number">02</span>
+            </div>
+            <div class="project-content">
+              <div class="project-meta"><span>ENGINEERING ANALYSIS</span><span>02 — 03</span></div>
+              <h3>[Project Two: FEA / Stress Analysis]</h3>
+              <p>Explain the load case, assumptions, boundary conditions, key result, and what the result taught you about the design.</p>
+              <div class="tags"><span class="tag">FEA</span><span class="tag">Hand calculations</span><span class="tag">Validation</span></div>
+            </div>
+          </article>
+          <article class="project">
+            <div class="project-art">
+              <span class="art-note">PROTOTYPE / TEST</span>
+              <svg viewBox="0 0 320 210" fill="none" aria-label="Illustration of a prototype fixture">
+                <g stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+                  <path d="M67 151L103 132L242 132L208 151Z" fill="#b8f36b" fill-opacity=".12"/>
+                  <path d="M67 151v-20l36-20v21M208 151v-20l34-20v21M103 132V91l35-20h104v41" />
+                  <path d="M103 91l35 20h104M138 71v40M173 71v40M207 71v40" stroke-dasharray="5 5" opacity=".7"/>
+                  <rect x="147" y="48" width="53" height="23" rx="2" fill="#b8f36b" fill-opacity=".18"/>
+                  <path d="M173 48V31M163 31h20M154 111v21M193 111v21" />
+                  <circle cx="83" cy="160" r="5"/><circle cx="225" cy="160" r="5"/>
+                </g>
+              </svg><span class="art-number">03</span>
+            </div>
+            <div class="project-content">
+              <div class="project-meta"><span>PROTOTYPING</span><span>03 — 03</span></div>
+              <h3>[Project Three: Prototype / Test Rig]</h3>
+              <p>Show what you built, what you measured, what failed or changed, and the evidence behind the final result.</p>
+              <div class="tags"><span class="tag">Prototyping</span><span class="tag">Testing</span><span class="tag">Iteration</span></div>
+            </div>
+          </article>
+          <article class="project">
+            <div class="project-art">
+              <span class="art-note">THERMAL / SYSTEMS</span>
+              <svg viewBox="0 0 320 210" fill="none" aria-label="Illustration of a thermal system">
+                <g stroke-width="2" stroke-linejoin="round">
+                  <rect x="66" y="53" width="188" height="104" rx="4" stroke="#9baab8"/>
+                  <path d="M86 75h148v61H86z" stroke="#b8f36b" stroke-dasharray="5 4"/>
+                  <path d="M103 104h33l10-19 19 38 17-38 13 19h25" stroke="#b8f36b"/>
+                  <path d="M160 35v18M151 44l9 9 9-9M160 157v18M151 166l9 9 9-9" stroke="#9baab8"/>
+                  <path d="M50 105h16M254 105h16" stroke="#9baab8"/>
+                </g>
+              </svg><span class="art-number">04</span>
+            </div>
+            <div class="project-content">
+              <div class="project-meta"><span>THERMAL / SYSTEMS</span><span>OPTIONAL</span></div>
+              <h3>[Project Four: Thermal or Fluid System]</h3>
+              <p>Use this card for a heat transfer, fluid mechanics, energy, controls, or other project relevant to your interests.</p>
+              <div class="tags"><span class="tag">Thermodynamics</span><span class="tag">Modeling</span><span class="tag">Results</span></div>
+            </div>
+          </article>
+        </div>
+        <div class="placeholder-note"><strong>Before publishing:</strong> These are sample project placeholders, not claims about work you've completed. Replace the titles and descriptions with accurate details, and remove any cards that don't apply.</div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">02 / About me</div><h2>Curious by design.<br>Practical by nature.</h2></div>
+        </div>
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>I'm a mechanical engineering student who enjoys understanding how things work, breaking difficult problems into manageable parts, and turning ideas into solutions that can be tested.</p>
+            <p>My interests include mechanical design, CAD, materials, manufacturing, and engineering analysis. I value clear documentation, thoughtful iteration, and decisions grounded in evidence.</p>
+            <p class="callout">My goal is to keep learning, build useful things, and contribute to engineering teams solving real-world problems.</p>
+            <p><em>Personalize this section with your actual university, year, areas of interest, work experience, and career goals.</em></p>
+          </div>
+          <div class="skill-panel" id="skills">
+            <div class="skill-group"><h3>01 / Design</h3><p>3D CAD · Assemblies · Technical drawings · GD&amp;T</p></div>
+            <div class="skill-group"><h3>02 / Analysis</h3><p>Statics · Mechanics of materials · FEA · Hand calculations</p></div>
+            <div class="skill-group"><h3>03 / Tools</h3><p>SolidWorks · Fusion 360 · MATLAB · Excel</p></div>
+            <div class="skill-group"><h3>04 / Build</h3><p>Prototyping · Manufacturing · Measurement · Testing</p></div>
+            <div class="skill-group"><p><em>Only list tools and skills you can honestly discuss. Delete anything you haven't used.</em></p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach">
+      <div class="wrap">
+        <div class="section-head">
+          <div><div class="eyebrow">03 / How I work</div><h2>From problem<br>to proof.</h2></div>
+          <p>Good engineering is more than a polished model. It's a traceable process with clear constraints, justified decisions, and results you can explain.</p>
+        </div>
+        <div class="process-grid">
+          <article class="process"><div class="num">STEP 01 / DEFINE</div><h3>Understand the problem</h3><p>Identify requirements, constraints, loads, interfaces, and what success needs to look like.</p></article>
+          <article class="process"><div class="num">STEP 02 / DEVELOP</div><h3>Model and evaluate</h3><p>Explore concepts, create CAD or analytical models, and compare options against the requirements.</p></article>
+          <article class="process"><div class="num">STEP 03 / VALIDATE</div><h3>Test and improve</h3><p>Check assumptions, interpret results, document trade-offs, and iterate based on evidence.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-panel">
+          <div><div class="eyebrow">04 / Contact</div><h2>Let's build something<br>that matters.</h2><p>Open to mechanical engineering internships, project collaborations, and opportunities to learn from experienced engineers.</p></div>
+          <div class="actions">
+            <a class="btn primary" href="mailto:YOUR.EMAIL@example.com">Email me ↗</a>
+            <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a class="btn" href="https://github.com/" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><span>© <span id="year">2026</span> YOUR NAME · MECHANICAL ENGINEERING</span><span>Designed with curiosity. Built with intent.</span></div></footer>
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
